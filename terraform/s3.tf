@@ -4,7 +4,7 @@ provider "aws" {
   region     = "ap-south-1"
 
 }
-
+# Create S3 Bucket
 resource "aws_s3_bucket" "mybucket" {
    bucket = "mytest-bucket082414"
    acl    = "private"
@@ -15,6 +15,7 @@ resource "aws_s3_bucket" "mybucket" {
   }
 
 }
+# Upload files into S3 Bucket
 resource "aws_s3_bucket_object" "object1" {
   for_each = fileset("myfiles/", "*")
   bucket   = aws_s3_bucket.mybucket.id
